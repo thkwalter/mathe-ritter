@@ -6,21 +6,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EinmaleinsComponent } from './einmaleins/einmaleins.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
-@NgModule({
-  declarations: [
+@NgModule
+({
+  declarations:
+  [
     AppComponent,
     EinmaleinsComponent
   ],
-  imports: [
+  imports:
+  [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap:
+  [
+    AppComponent
+  ]
 })
 export class AppModule { }

@@ -10,6 +10,8 @@ export class EinmaleinsComponent implements OnInit
 {
   ergebnisKorrekt : boolean;
 
+  meldung : string;
+
   faktor1 : number
   faktor2 : number;
   korrektesErgebnis : number;
@@ -19,6 +21,7 @@ export class EinmaleinsComponent implements OnInit
 
   ngOnInit()
   {
+    this.meldung = "Löse bitte die folgende Aufgabe:"
     this.neueAufgabeErstellen();
   }
 
@@ -33,12 +36,12 @@ export class EinmaleinsComponent implements OnInit
 
     if (this.ergebnisKorrekt)
     {
-//      this.meldung = "Dein Ergebnis ist richtig! Löse bitte noch folgende Aufgabe:"
+      this.meldung = "Dein Ergebnis ist richtig! Löse bitte noch folgende Aufgabe:"
       this.neueAufgabeErstellen();
     }
     else
     {
-//      this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
+      this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
     }
   }
 
