@@ -2,7 +2,7 @@
   <mat-card-title>Das Einmaleins</mat-card-title>
 
   <mat-card-content>
-  <p class="fehlermeldung">
+  <p [class.fehlermeldung]="!ergebnisKorrekt">
     {{meldung}}
   </p>
 

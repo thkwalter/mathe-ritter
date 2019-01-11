@@ -3,10 +3,11 @@
   // Extract the palettes you need from the theme definition.
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
 
   // Define any styles affected by the theme.
   .fehlermeldung {
     // Use mat-color to extract individual colors a palette.
-    color: mat-color($accent);
+    color: mat-color($warn);
   }
 }

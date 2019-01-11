@@ -17,7 +17,13 @@ export class EinmaleinsComponent implements OnInit
   korrektesErgebnis : number;
   eingegebenesErgebnis : number;
 
-  constructor(private zufallszahlService: ZufallszahlService) { }
+  constructor(private zufallszahlService: ZufallszahlService)
+  {
+    this.meldung = "Löse bitte die folgende Aufgabe:"
+
+    // Dies bewirkt, dass die Meldung in der normalen Textfarbe angezeigt wird.
+    this.ergebnisKorrekt = true;
+  }
 
   ngOnInit()
   {
