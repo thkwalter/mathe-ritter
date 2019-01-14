@@ -8,10 +8,7 @@
 
   <p>
     {{faktor1}} &bull; {{faktor2}} = <input [(ngModel)]="eingegebenesErgebnis" placeholder="">
+    <button mat-stroked-button color="accent" (click)="kontrollieren()">Kontrollieren</button>
   </p>
   </mat-card-content>
-
-  <mat-card-actions>
-    <button (click)="kontrollieren()">Kontrollieren</button>
-  </mat-card-actions>
 </mat-card>
