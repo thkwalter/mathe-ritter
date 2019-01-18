@@ -1,15 +1,19 @@
 <mat-card>
-  <mat-card-title>Das Einmaleins</mat-card-title>
+   <mat-card-title>Das Einmaleins</mat-card-title>
 
-  <mat-card-content>
-  <p [class.fehlermeldung]="!ergebnisKorrekt">
-    {{meldung}}
-  </p>
+   <mat-card-content>
+      <p [class.fehlermeldung]="!ergebnisKorrekt">
+         {{meldung}}
+      </p>
 
-  <p>
-    {{faktor1}} &bull; {{faktor2}} =
-    <input [(ngModel)]="eingegebenesErgebnis" placeholder="" (keyup.enter)="kontrollieren()">
-    <button mat-stroked-button color="accent" (click)="kontrollieren()">Kontrollieren</button>
-  </p>
-  </mat-card-content>
+      <p>
+         {{faktor1}} &bull; {{faktor2}} =
+         <mat-form-field>
+            <input matInput type="number" [(ngModel)]="eingegebenesErgebnis" placeholder=""
+               (keyup.enter)="kontrollieren()">
+         </mat-form-field>
+
+         <button mat-stroked-button color="accent" (click)="kontrollieren()">Kontrollieren</button>
+      </p>
+   </mat-card-content>
 </mat-card>
