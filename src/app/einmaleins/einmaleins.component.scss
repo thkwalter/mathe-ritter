@@ -1,4 +1,22 @@
+.gleichheitszeichen
+{
+   margin-left: 8px;
+   margin-right: 8px;
+}
+
+.eingabefeld
+{
+   width: 32px;
+}
+
 .abstand-links
 {
    margin-left: 16px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+   -webkit-appearance: none;
+   margin: 0;
 }
