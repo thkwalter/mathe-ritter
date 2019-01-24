@@ -16,5 +16,13 @@
          <button mat-stroked-button class="abstand-links" color="accent"
             (click)="kontrollieren()">Kontrollieren</button>
       </p>
+
+      <p>
+         Du hast {{zaehlerKorrekt}} mal korrekt und {{zaehlerFehlerhaft}} mal falsch geantwortet.
+      </p>
    </mat-card-content>
+
+   <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="starten()">Starten</button>
+  </mat-card-actions>
 </mat-card>
