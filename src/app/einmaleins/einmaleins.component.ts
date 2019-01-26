@@ -76,6 +76,9 @@ export class EinmaleinsComponent implements OnInit
 
       // Die erste Aufgabe wird bestimmt.
       this.neueAufgabeErstellen();
+
+      // Das Eingabefeld wird geleert.
+      this.eingegebenesErgebnis = null;
    }
 
    /**
