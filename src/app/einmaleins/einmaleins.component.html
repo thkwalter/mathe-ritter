@@ -18,14 +18,14 @@
       </p>
 
       <p>
-         <mat-icon color="accent">done</mat-icon><span class="abstand-links-8">{{zaehlerKorrekt}}</span>
-         <span class="abstand-links-32">
-            <mat-icon color="warn">report</mat-icon><span class="abstand-links-8">{{zaehlerFehlerhaft}}</span>
-         </span>
+         <mat-icon color="accent" class="ausrichtung">done</mat-icon>
+         <span class="abstand-links-8">{{zaehlerKorrekt}}</span>
+         <mat-icon color="warn" class="abstand-links-32 ausrichtung">error</mat-icon>
+         <span class="abstand-links-8">{{zaehlerFehlerhaft}}</span>
       </p>
    </mat-card-content>
 
    <mat-card-actions>
-      <button mat-raised-button color="accent" (click)="starten()">Starten</button>
+      <button mat-raised-button color="accent" (click)="starten()">Neu starten</button>
   </mat-card-actions>
 </mat-card>
