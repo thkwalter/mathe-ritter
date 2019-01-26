@@ -13,12 +13,15 @@
                (keyup.enter)="kontrollieren()" min="0" max="100">
          </mat-form-field>
 
-         <button mat-stroked-button class="abstand-links" color="accent"
+         <button mat-stroked-button class="abstand-links-16" color="accent"
             (click)="kontrollieren()">Kontrollieren</button>
       </p>
 
       <p>
-         Du hast {{zaehlerKorrekt}} mal korrekt und {{zaehlerFehlerhaft}} mal falsch geantwortet.
+         <mat-icon color="accent">done</mat-icon><span class="abstand-links-8">{{zaehlerKorrekt}}</span>
+         <span class="abstand-links-32">
+            <mat-icon color="warn">report</mat-icon><span class="abstand-links-8">{{zaehlerFehlerhaft}}</span>
+         </span>
       </p>
    </mat-card-content>
 
