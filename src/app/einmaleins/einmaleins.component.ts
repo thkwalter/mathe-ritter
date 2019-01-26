@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ZufallszahlService} from '../zufallszahl.service';
 
 @Component({
@@ -8,6 +8,9 @@ import { ZufallszahlService} from '../zufallszahl.service';
 })
 export class EinmaleinsComponent implements OnInit
 {
+   @ViewChild("ergebnis")
+   ergebnisEingabefeld : ElementRef;
+
    ergebnisKorrekt : boolean;
 
    meldung : string;
@@ -51,6 +54,9 @@ export class EinmaleinsComponent implements OnInit
          this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
          this.zaehlerFehlerhaft++;
       }
+
+      // Fokus wieder auf das Eingabefeld setzen
+      this.ergebnisEingabefeld.nativeElement.focus();
    }
 
    /**

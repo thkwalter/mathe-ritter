@@ -9,7 +9,7 @@
       <p>
          {{faktor1}} &bull; {{faktor2}} <span class="gleichheitszeichen">=</span>
          <mat-form-field class="eingabefeld">
-            <input matInput type="number" [(ngModel)]="eingegebenesErgebnis" placeholder=""
+            <input matInput #ergebnis type="number" [(ngModel)]="eingegebenesErgebnis" placeholder=""
                (keyup.enter)="kontrollieren()" min="0" max="100">
          </mat-form-field>
 
