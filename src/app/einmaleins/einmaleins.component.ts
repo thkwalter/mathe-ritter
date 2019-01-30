@@ -51,6 +51,7 @@ export class EinmaleinsComponent implements OnInit
       // Falls das eingegebene Ergebnis fehlerhaft ist, ...
       else
       {
+         this.fehlertonSpielen();
          this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
          this.zaehlerFehlerhaft++;
       }
@@ -89,5 +90,13 @@ export class EinmaleinsComponent implements OnInit
       this.faktor1 = this.zufallszahlService.getZufallszahl();
       this.faktor2 = this.zufallszahlService.getZufallszahl();
       this.korrektesErgebnis = this.faktor1 * this.faktor2;
+   }
+
+   fehlertonSpielen()
+   {
+      let audio = new Audio();
+      audio.src = "../../../assets/warnton3.wav";
+      audio.load();
+      audio.play();
    }
 }
