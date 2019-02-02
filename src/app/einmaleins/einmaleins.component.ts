@@ -3,18 +3,20 @@ import { ZufallszahlService} from '../zufallszahl.service';
 
 @Component
 ({
-  selector: 'einmaleins',
-  templateUrl: './einmaleins.component.html',
-  styleUrls: ['./einmaleins.component.scss']
+   selector: 'einmaleins',
+   templateUrl: './einmaleins.component.html',
+   styleUrls: ['./einmaleins.component.scss']
 })
 export class EinmaleinsComponent implements OnInit
 {
+   /** Eine Referenz auf das Eingabefeld */
    @ViewChild("ergebnis")
    ergebnisEingabefeld : ElementRef;
 
    /** true, falls das eingegebene Ergebnis korrekt ist */
    ergebnisKorrekt : boolean;
 
+   /** Der angezeigte Meldungstext */
    meldung : string;
 
    /** Der erste Faktor der Multiplikationsaufgabe */
@@ -29,9 +31,13 @@ export class EinmaleinsComponent implements OnInit
    /** Das vom Anwender eingegebene Ergebnis */
    eingegebenesErgebnis : number;
 
+   /** Die Anzahl der korrekten Antworten */
    zaehlerKorrekt : number;
+
+   /** Die Anzahl der fehlerhaften Antworten */
    zaehlerFehlerhaft : number;
 
+   /** Das Audio-Objekt zum Abspielen des Fehlertons */
    audio : any;
 
 // =====================================================================================================================
@@ -41,8 +47,10 @@ export class EinmaleinsComponent implements OnInit
 
    ngOnInit()
    {
+      // Der Fehlerton wird geladen.
       this.audio = new Audio();
       this.audio.src = "../../../assets/warnton3.wav";
+      this.audio.load();
 
       // Ein neues Spiel wird begonnen.
       this.starten();
@@ -52,12 +60,14 @@ export class EinmaleinsComponent implements OnInit
 // =====================================================================================================================
 
    /**
-    * Kontrolliert das Ergebnis, erzeugt eine Meldung und ggf. eine  neue Aufgabe.
+    * Kontrolliert das Ergebnis, erzeugt eine Meldung, aktualisiert die Zähler und zeigt ggf. eine neue Aufgabe an.
     */
    kontrollieren()
       {
+      // Es wird bestimmt, ob das eingegebene Ergebnis korrekt ist.
       this.ergebnisKorrekt = (this.eingegebenesErgebnis == this.korrektesErgebnis);
 
+      // Das Eingabefeld wird geleert.
       this.eingegebenesErgebnis = null;
 
       // Falls das eingegebene Ergebnis korrekt ist, ...
@@ -65,23 +75,30 @@ export class EinmaleinsComponent implements OnInit
       {
          this.meldung = "Dein Ergebnis ist richtig! Löse bitte noch folgende Aufgabe:"
          this.zaehlerKorrekt++;
+
+         // Eine neueAufgabe wird erstellt.
          this.neueAufgabeErstellen();
       }
 
       // Falls das eingegebene Ergebnis fehlerhaft ist, ...
       else
       {
+         // Der Fehlerton wird abgespielt.
          this.fehlertonSpielen();
+
          this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
          this.zaehlerFehlerhaft++;
-      }
 
-      // Der Fokus wird wieder auf das Eingabefeld gesetzt
-      this.fokusAufEingabefeldSetzen();
+         // Der Fokus wird wieder auf das Eingabefeld gesetzt.
+         this.fokusAufEingabefeldSetzen();
+      }
    }
 
+// =====================================================================================================================
+// =====================================================================================================================
+
    /**
-    * Startet ein neues Spiel, d.h. die Zähler werden zurückgesetzt.
+    * Startet ein neues Spiel, d.h. die Zähler werden zurückgesetzt und eine neue Augabe erstellt.
     */
    starten()
    {
@@ -105,6 +122,9 @@ export class EinmaleinsComponent implements OnInit
       this.fokusAufEingabefeldSetzen();
    }
 
+// =====================================================================================================================
+// =====================================================================================================================
+
    /**
     * Erstellt eine neue Aufgabe.
     */
@@ -115,14 +135,19 @@ export class EinmaleinsComponent implements OnInit
       this.korrektesErgebnis = this.faktor1 * this.faktor2;
    }
 
+// =====================================================================================================================
+// =====================================================================================================================
+
    /**
     * Spielt einen Fehlerton
     */
    fehlertonSpielen()
    {
-      this.audio.load();
       this.audio.play();
    }
+
+// =====================================================================================================================
+// =====================================================================================================================
 
    /**
     * Setzt den Fokus auf das Eingabefeld
