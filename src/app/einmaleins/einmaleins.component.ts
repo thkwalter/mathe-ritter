@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ZufallszahlService} from '../zufallszahl.service';
 
-@Component({
+@Component
+({
   selector: 'einmaleins',
   templateUrl: './einmaleins.component.html',
   styleUrls: ['./einmaleins.component.scss']
@@ -11,25 +12,44 @@ export class EinmaleinsComponent implements OnInit
    @ViewChild("ergebnis")
    ergebnisEingabefeld : ElementRef;
 
+   /** true, falls das eingegebene Ergebnis korrekt ist */
    ergebnisKorrekt : boolean;
 
    meldung : string;
 
+   /** Der erste Faktor der Multiplikationsaufgabe */
    faktor1 : number
+
+   /** Der zweite Faktor der Multiplikationsaufgabe */
    faktor2 : number;
+
+   /** Das korrekte Ergebnis */
    korrektesErgebnis : number;
+
+   /** Das vom Anwender eingegebene Ergebnis */
    eingegebenesErgebnis : number;
 
    zaehlerKorrekt : number;
    zaehlerFehlerhaft : number;
 
-   constructor(private zufallszahlService: ZufallszahlService) {}
+   audio : any;
+
+// =====================================================================================================================
+// =====================================================================================================================
+
+   constructor(private zufallszahlService: ZufallszahlService){}
 
    ngOnInit()
    {
+      this.audio = new Audio();
+      this.audio.src = "../../../assets/warnton3.wav";
+
       // Ein neues Spiel wird begonnen.
       this.starten();
    }
+
+// =====================================================================================================================
+// =====================================================================================================================
 
    /**
     * Kontrolliert das Ergebnis, erzeugt eine Meldung und ggf. eine  neue Aufgabe.
@@ -56,8 +76,8 @@ export class EinmaleinsComponent implements OnInit
          this.zaehlerFehlerhaft++;
       }
 
-      // Fokus wieder auf das Eingabefeld setzen
-      this.ergebnisEingabefeld.nativeElement.focus();
+      // Der Fokus wird wieder auf das Eingabefeld gesetzt
+      this.fokusAufEingabefeldSetzen();
    }
 
    /**
@@ -80,6 +100,9 @@ export class EinmaleinsComponent implements OnInit
 
       // Das Eingabefeld wird geleert.
       this.eingegebenesErgebnis = null;
+
+      // Der Fokus wird wieder auf das Eingabefeld gesetzt
+      this.fokusAufEingabefeldSetzen();
    }
 
    /**
@@ -92,11 +115,20 @@ export class EinmaleinsComponent implements OnInit
       this.korrektesErgebnis = this.faktor1 * this.faktor2;
    }
 
+   /**
+    * Spielt einen Fehlerton
+    */
    fehlertonSpielen()
    {
-      let audio = new Audio();
-      audio.src = "../../../assets/warnton3.wav";
-      audio.load();
-      audio.play();
+      this.audio.load();
+      this.audio.play();
+   }
+
+   /**
+    * Setzt den Fokus auf das Eingabefeld
+    */
+   fokusAufEingabefeldSetzen()
+   {
+      this.ergebnisEingabefeld.nativeElement.focus();
    }
 }
