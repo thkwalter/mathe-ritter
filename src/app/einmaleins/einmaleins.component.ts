@@ -63,7 +63,15 @@ export class EinmaleinsComponent implements OnInit
     * Kontrolliert das Ergebnis, erzeugt eine Meldung, aktualisiert die Zähler und zeigt ggf. eine neue Aufgabe an.
     */
    kontrollieren()
+   {
+      // Der Fokus wird wieder auf das Eingabefeld gesetzt.
+      this.fokusAufEingabefeldSetzen();
+
+      if (this.eingegebenesErgebnis == null)
       {
+         return;
+      }
+
       // Es wird bestimmt, ob das eingegebene Ergebnis korrekt ist.
       this.ergebnisKorrekt = (this.eingegebenesErgebnis == this.korrektesErgebnis);
 
@@ -88,9 +96,6 @@ export class EinmaleinsComponent implements OnInit
 
          this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
          this.zaehlerFehlerhaft++;
-
-         // Der Fokus wird wieder auf das Eingabefeld gesetzt.
-         this.fokusAufEingabefeldSetzen();
       }
    }
 
