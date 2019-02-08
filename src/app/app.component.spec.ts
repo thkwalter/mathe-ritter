@@ -1,21 +1,20 @@
 import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { AppComponent } from './app.component';
-import { EinmaleinsComponent } from './einmaleins/einmaleins.component';
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        MatToolbarModule
+
       ],
       declarations: [
         AppComponent,
         EinmaleinsComponentMock
       ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 
