@@ -2,15 +2,16 @@
    <mat-card-title>Das Einmaleins</mat-card-title>
 
    <mat-card-content>
-      <p [class.fehlermeldung]="!ergebnisKorrekt">
+      <p id="einmaleins_meldung" [class.fehlermeldung]="!ergebnisKorrekt">
          {{meldung}}
       </p>
 
       <p>
-         {{faktor1}} &bull; {{faktor2}} <span class="gleichheitszeichen">=</span>
+         <span id="einmaleins_faktor1">{{faktor1}}</span> &bull; <span id="einmaleins_faktor2">{{faktor2}}</span>
+         <span class="gleichheitszeichen">=</span>
          <mat-form-field class="eingabefeld" color="accent">
-            <input matInput #ergebnis type="number" [(ngModel)]="eingegebenesErgebnis" placeholder=""
-               (keyup.enter)="kontrollieren()" min="0" max="100">
+            <input id="einmaleins_eingegebenesErgebnis" matInput #ergebnis type="number"
+               [(ngModel)]="eingegebenesErgebnis" placeholder="" (keyup.enter)="kontrollieren()" min="0" max="100">
          </mat-form-field>
 
          <button mat-stroked-button class="abstand-links-16" color="accent"
@@ -19,14 +20,14 @@
 
       <p>
          <mat-icon color="accent" class="ausrichtung">done</mat-icon>
-         <span class="abstand-links-8">{{zaehlerKorrekt}}</span>
+         <span id="einmaleins_zaehlerKorrekt" class="abstand-links-8">{{zaehlerKorrekt}}</span>
          <mat-icon color="warn" class="abstand-links-32 ausrichtung">error</mat-icon>
-         <span class="abstand-links-8">{{zaehlerFehlerhaft}}</span>
+         <span id="einmaleins_zaehlerFehlerhaft" class="abstand-links-8">{{zaehlerFehlerhaft}}</span>
       </p>
    </mat-card-content>
 
    <mat-card-actions>
-      <button *ngIf="zaehlerKorrekt || zaehlerFehlerhaft" mat-button color="accent"
+      <button id="einmaleins_neustarten" *ngIf="zaehlerKorrekt || zaehlerFehlerhaft" mat-button color="accent"
          (click)="starten()">Neu starten</button>
   </mat-card-actions>
 </mat-card>
