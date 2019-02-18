@@ -55,6 +55,8 @@ describe('EinmaleinsComponent::', () =>
    {
       // Die von der Methode aufgerufenen Methoden werden durch einen Spy ersetzt.
       spyOn(component, 'fokusAufEingabefeldSetzen');
+      spyOn(component, 'neueAufgabeErstellen');
+      spyOn(component, 'fehlertonSpielen');
 
       // Die Attribute der Komponente werden initialisiert.
       component.zaehlerKorrekt = 5;
@@ -72,5 +74,39 @@ describe('EinmaleinsComponent::', () =>
       expect(component.zaehlerKorrekt).toBe(5);
       expect(component.zaehlerFehlerhaft).toBe(1);
       expect(component.fokusAufEingabefeldSetzen).toHaveBeenCalled();
+      expect(component.neueAufgabeErstellen).not.toHaveBeenCalled();
+      expect(component.fehlertonSpielen).not.toHaveBeenCalled();
+   });
+
+// =====================================================================================================================
+// =====================================================================================================================
+
+   it('kontrollieren(), falls das eingegebene Ergebnis falsch ist', () =>
+   {
+      // Die von der Methode aufgerufenen Methoden werden durch einen Spy ersetzt.
+      spyOn(component, 'fokusAufEingabefeldSetzen');
+      spyOn(component, 'neueAufgabeErstellen');
+      spyOn(component, 'fehlertonSpielen');
+
+      // Die Attribute der Komponente werden initialisiert.
+      component.zaehlerKorrekt = 5;
+      component.zaehlerFehlerhaft = 1;
+
+      // Die vorgegebene Testbedingung (falsch eingegebenes Ergebnis) wird hergestellt.
+      component.eingegebenesErgebnis = 12;
+      component.korrektesErgebnis = 14;
+
+      // Die zu testende Methode wird ausgeführt.
+      component.kontrollieren();
+
+      // Unter der vorgegebenen Testbedingung sollte die kontrollieren()-Methode den Zähler für die falschen Ergebnisse
+      // erhöhen, die korrekte Meldung setzen, den Fokus auf das Eingabefeld setzen und den Fehlerton spielen.
+      expect(component.ergebnisKorrekt).toBeTruthy;
+      expect(component.meldung).toMatch("Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal.");
+      expect(component.zaehlerKorrekt).toBe(5);
+      expect(component.zaehlerFehlerhaft).toBe(2);
+      expect(component.fokusAufEingabefeldSetzen).toHaveBeenCalled();
+      expect(component.neueAufgabeErstellen).not.toHaveBeenCalled();
+      expect(component.fehlertonSpielen).toHaveBeenCalled();
    });
 });
