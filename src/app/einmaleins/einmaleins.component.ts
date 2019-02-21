@@ -81,7 +81,7 @@ export class EinmaleinsComponent implements OnInit
       // Falls das eingegebene Ergebnis korrekt ist, ...
       if (this.ergebnisKorrekt)
       {
-         this.meldung = "Dein Ergebnis ist richtig! Löse bitte noch folgende Aufgabe:"
+         this.meldung = "Dein Ergebnis ist richtig! Löse bitte noch folgende Aufgabe:";
          this.zaehlerKorrekt++;
 
          // Eine neueAufgabe wird erstellt.
@@ -94,7 +94,7 @@ export class EinmaleinsComponent implements OnInit
          // Der Fehlerton wird abgespielt.
          this.fehlertonSpielen();
 
-         this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal."
+         this.meldung = "Dein Ergebnis ist leider falsch! Bitte versuche es noch einmal.";
          this.zaehlerFehlerhaft++;
       }
    }
@@ -115,7 +115,7 @@ export class EinmaleinsComponent implements OnInit
       this.ergebnisKorrekt = true;
 
       // Die initiale Melung wird angezeigt.
-      this.meldung = "Löse bitte die folgende Aufgabe:"
+      this.meldung = "Löse bitte die folgende Aufgabe:";
 
       // Die erste Aufgabe wird bestimmt.
       this.neueAufgabeErstellen();
