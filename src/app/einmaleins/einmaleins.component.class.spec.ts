@@ -4,7 +4,7 @@ import { ZufallszahlService} from '../zufallszahl.service';
 describe('EinmaleinsComponent::', () =>
 {
    let component : EinmaleinsComponent;
-   let service : ZufallszahlService;
+   let service : ZufallszahlServiceMock;
 
 // =====================================================================================================================
 // =====================================================================================================================
@@ -12,7 +12,7 @@ describe('EinmaleinsComponent::', () =>
    beforeEach(() =>
    {
       // Der ZufallszahlService und die EinmaleinsComponent werden erzeugt.
-      service = new ZufallszahlService();
+      service = new ZufallszahlServiceMock();
       component = new EinmaleinsComponent(service);
    });
 
@@ -109,4 +109,42 @@ describe('EinmaleinsComponent::', () =>
       expect(component.neueAufgabeErstellen).not.toHaveBeenCalled();
       expect(component.fehlertonSpielen).toHaveBeenCalled();
    });
+
+// =====================================================================================================================
+// =====================================================================================================================
+
+   it('neueAufgabeErstellen()', () =>
+   {
+      // Die Attribute, die von der zu testenden Methode verändert werden, werden initialisiert.
+      component.faktor1 = undefined;
+      component.faktor2 = undefined;
+      component.korrektesErgebnis = undefined;
+
+      // Die zu testende Methode wird aufgerufen.
+      component.neueAufgabeErstellen();
+
+      // Die geänderten Attribute werden geprüft.
+      expect(component.faktor1).toBe(5);
+      expect(component.faktor2).toBe(7);
+      expect(component.korrektesErgebnis).toBe(35);
+   });
 });
+
+// =====================================================================================================================
+// =====================================================================================================================
+
+/*
+ * Dieser Mock für den ZufallszahlService gibt immer abwechselnd eine 5 und eine 7 zurück.
+ */
+class ZufallszahlServiceMock
+{
+   ersterFaktor : boolean = true;
+
+   getZufallszahl(): number
+   {
+      let zufallszahl = this.ersterFaktor ? 5 : 7;
+      this.ersterFaktor = !this.ersterFaktor;
+
+      return zufallszahl;
+   }
+}
