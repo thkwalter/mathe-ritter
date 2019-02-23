@@ -19,6 +19,24 @@ describe('EinmaleinsComponent::', () =>
 // =====================================================================================================================
 // =====================================================================================================================
 
+   it('ngOnInit()', () =>
+   {
+      // Die von der Methode aufgerufenen Methoden werden durch einen Spy ersetzt.
+      spyOn(component, 'starten');
+
+      // Die zu testende Methode wird aufgerufen.
+      component.ngOnInit();
+
+      // Die starten()-Methode sollte das Audio-Objekt initialisiert haben.
+      expect(component.audio.src).not.toBeUndefined();
+
+      // Die ngOnInit()-Methode sollte die starten()-Methode aufgerufen haben.
+      expect(component.starten).toHaveBeenCalled();
+   });
+
+// =====================================================================================================================
+// =====================================================================================================================
+
    it('starten()', () =>
    {
       // Die von der Methode aufgerufenen Methoden werden durch einen Spy ersetzt.
